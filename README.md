@@ -1,2 +1,4 @@
 # Rock-Paper-Scissors
-The Odin Project Javascript project section
+The Odin Project => JavaScript => Rock,Paper,Scissors Project
+
+Foundation JavaScript knowledge testing
