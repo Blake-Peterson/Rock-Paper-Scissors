@@ -19,36 +19,35 @@ function getHumanChoice(){
 }
 
 function playRound(humanChoice, computerChoice){
-    humanChoice = humanChoice.toLowerCase();
+    let humanChoice_lower = humanChoice.toLowerCase();
     let statement = "";
     let winner = 0;
-    if(humanChoice === computerChoice){
+    if(humanChoice_lower === computerChoice){
         winner = -1;
-        statement = "You tied! You both chose "+humanChoice;
-    } else if (humanChoice === "rock" && computerChoice =="scissors"){
+        statement = "You tied! You both chose "+humanChoice_lower;
+    } else if (humanChoice_lower === "rock" && computerChoice =="scissors"){
         winner = 0;
-        statement = "You Win! " + humanChoice + " beats " + computerChoice
-    } else if(humanChoice === "paper" && computerChoice =="rock") {
+        statement = "You Win! " + humanChoice_lower + " beats " + computerChoice
+    } else if(humanChoice_lower === "paper" && computerChoice =="rock") {
         winner =0;
-        statement = "You Win! " + humanChoice + " beats " + computerChoice
-    } else if(humanChoice === "scissors" && computerChoice =="paper"){
+        statement = "You Win! " + humanChoice_lower + " beats " + computerChoice
+    } else if(humanChoice_lower === "scissors" && computerChoice =="paper"){
         winner = 0;
-        statement = "You Win! " + humanChoice + " beats " + computerChoice;
+        statement = "You Win! " + humanChoice_lower + " beats " + computerChoice;
     } else {
         winner = 1;
-        statement = "You Lose" + computerChoice + " beats " + humanChoice;
+        statement = "You Lose " + computerChoice + " beats " + humanChoice;
     }
-
     console.log(statement)
-    
     return winner;
 }
 
 
 function playGame(){
     let winner =0;
-    for(let i=0;i<5;i++){
-        winner = playRound(humanChoice,computerChoice);
+    let i=0;
+    for(i=0;i<5;i++){
+        winner = playRound(getHumanChoice(),getComputerChoice());
         if(winner ===0){
             humanScore++;
         } else if(winner ===1){
@@ -56,17 +55,14 @@ function playGame(){
         }
     }
     if(humanScore>computerScore){
-        console.log("You won "+humanScore + " vs. " + computerScore);
+        console.log("You won "+humanScore + " - " + computerScore+ " out of "+i);
     } else if (computerScore > humanScore) {
-        console.log("You lost "+computerScore + " vs. " + humanScore);
+        console.log("You lost "+computerScore + " - " + humanScore+ " out of "+i);
     }else {
         console.log("You tied\n");
     }
 }
   
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+playGame();
   
 
