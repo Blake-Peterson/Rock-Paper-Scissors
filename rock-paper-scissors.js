@@ -20,27 +20,47 @@ function getHumanChoice(){
 
 function playRound(humanChoice, computerChoice){
     humanChoice = humanChoice.toLowerCase();
-    let statement = ""
+    let statement = "";
+    let winner = 0;
     if(humanChoice === computerChoice){
-        statement = "You tied! You chose the same thing"
+        winner = -1;
+        statement = "You tied! You both chose "+humanChoice;
     } else if (humanChoice === "rock" && computerChoice =="scissors"){
-        humanScore++;
+        winner = 0;
+        statement = "You Win! " + humanChoice + " beats " + computerChoice
     } else if(humanChoice === "paper" && computerChoice =="rock") {
-        humanScore++;
+        winner =0;
+        statement = "You Win! " + humanChoice + " beats " + computerChoice
     } else if(humanChoice === "scissors" && computerChoice =="paper"){
-        humanScore++;
+        winner = 0;
+        statement = "You Win! " + humanChoice + " beats " + computerChoice;
     } else {
-        computerScore++;
-        statement = "You Lose"
+        winner = 1;
+        statement = "You Lose" + computerChoice + " beats " + humanChoice;
     }
+
+    console.log(statement)
     
-    return statement;
+    return winner;
 }
 
 
 function playGame(){
-    for(let i=0;i<5,i++){
-        playRound(humanChoice,computerChoice);
+    let winner =0;
+    for(let i=0;i<5;i++){
+        winner = playRound(humanChoice,computerChoice);
+        if(winner ===0){
+            humanScore++;
+        } else if(winner ===1){
+            computerScore++;
+        }
+    }
+    if(humanScore>computerScore){
+        console.log("You won "+humanScore + " vs. " + computerScore);
+    } else if (computerScore > humanScore) {
+        console.log("You lost "+computerScore + " vs. " + humanScore);
+    }else {
+        console.log("You tied\n");
     }
 }
   
