@@ -23,31 +23,15 @@ function getComputerChoice(){
 function getHumanChoice(){
     const buttons = document.querySelectorAll("button");
     buttons.forEach((button) => {
-        if(computerScore<5 && humanScore<5){
-            button.addEventListener("click",()=>{
-                if(button.id === 'rock' ){
-                    playRound('rock', getComputerChoice());
-                } else if(button.id === 'paper'){
-                    playRound('paper', getComputerChoice());
-                } else if( button.id === 'scissors' ){
-                    playRound('scissors', getComputerChoice());
-                }
-            });          
-        } else if(humanScore==5) {
-            const p = document.createElement("div");
-            p.classList.add("winner");
-            p.textContent = "User Wins!"+ humanScore + "VS"+ computerScore;
-            const container = document.querySelector("#results-container");
-            container.appendChild(p);
-        } else {
-            const p = document.createElement("div");
-            p.classList.add("winner");
-            p.textContent = "Computer Wins!" +computerScoreScore + "VS"+ humanScoreScore;
-            const container = document.querySelector("#results-container");
-            container.appendChild(p);
-            humanScore =0;
-            computerScore=0;
-        }
+        button.addEventListener("click",()=>{
+            if(button.id === 'rock' ){
+                playRound('rock', getComputerChoice());
+            } else if(button.id === 'paper'){
+                playRound('paper', getComputerChoice());
+            } else if( button.id === 'scissors' ){
+                playRound('scissors', getComputerChoice());
+            }
+        }); 
     });
 }
 
@@ -75,30 +59,23 @@ function playRound(humanChoice, computerChoice){
         computerResultDisplay.textContent = computerScore;
         //statement = "You Lose " + computerChoice + " beats " + humanChoice;
     }
-}
-
-
-/*
-function playGame(){
-    let winner =0;
-    let i=0;
-    for(i=0;i<5;i++){
-        winner = playRound(getHumanChoice(),getComputerChoice());
-        if(winner ===0){
-            humanScore++;
-        } else if(winner ===1){
-            computerScore++;
-        }
-    }
-    if(humanScore>computerScore){
-        console.log("You won "+humanScore + " - " + computerScore+ " out of "+i);
-    } else if (computerScore > humanScore) {
-        console.log("You lost "+computerScore + " - " + humanScore+ " out of "+i);
-    }else {
-        console.log("You tied\n");
+    if(humanScore==5) {
+        const p = document.createElement("p");
+        p.classList.add("winner");
+        p.textContent = "User Wins!"+ humanScore + "VS"+ computerScore;
+        const container = document.querySelector(".container");
+        container.appendChild(p);
+        humanScore=0;
+        computerScore=0;
+    } else if (computerScore==5) {
+        const p = document.createElement("p");
+        p.classList.add("winner");
+        p.textContent = "Computer Wins!" +computerScore + "VS"+ humanScore;
+        const container = document.querySelector(".container");
+        container.appendChild(p);
+        humanScore=0;
+        computerScore=0;
     }
 }
 
-playGame();
-*/
 getHumanChoice();
