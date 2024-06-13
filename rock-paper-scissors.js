@@ -15,13 +15,25 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    return prompt("Please select a choice of \"rock\", \"paper\",\"scissors\"\n");
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click",()=>{
+            if(button.id === 'rock' ){
+                playRound('rock', getComputerChoice());
+            } else if(button.id === 'paper'){
+                playRound('paper', getComputerChoice());
+            } else if( button.id === 'scissors' ){
+                playRound('scissors', getComputerChoice());
+            }
+        });
+    });
 }
 
 function playRound(humanChoice, computerChoice){
     let humanChoice_lower = humanChoice.toLowerCase();
     let statement = "";
     let winner = 0;
+    
     if(humanChoice_lower === computerChoice){
         winner = -1;
         statement = "You tied! You both chose "+humanChoice_lower;
@@ -42,7 +54,7 @@ function playRound(humanChoice, computerChoice){
     return winner;
 }
 
-
+/*
 function playGame(){
     let winner =0;
     let i=0;
@@ -62,7 +74,7 @@ function playGame(){
         console.log("You tied\n");
     }
 }
-  
-playGame();
-  
 
+playGame();
+*/
+getHumanChoice();
